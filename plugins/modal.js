@@ -1,7 +1,7 @@
-function _createModal(options){
+function _createModal(options) {
 const modal = document.createElement('div');
 modal.classList.add('ymodal');
-modal.insertAdjacentElement('afterbegin', `
+modal.insertAdjacentHTML('afterbegin', `
 <div class="modal-overlay">
     <div class="modal-window">
         <div class="modal-header">
@@ -26,10 +26,19 @@ return modal;
 }
 
 $.modal = function(options) {
+    const ANIMATION_SPEED = 200;
     const $modal = _createModal(options);
 return {
-    open() {},
-    close() {},
+    open() {
+        $modal.classList.add('open')
+    },
+    close() {
+        $modal.classList.remove('open');
+        $modal.classList.add('hide')
+        setTimeout(() => {
+Smodal.classList.remove('hide')
+        }, ANIMATION_SPEED)
+    },
     destroy() {}
 };
-}
+};
