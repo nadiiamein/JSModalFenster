@@ -28,15 +28,18 @@ return modal;
 $.modal = function(options) {
     const ANIMATION_SPEED = 200;
     const $modal = _createModal(options);
+    let clossing = false;
 return {
     open() {
-        $modal.classList.add('open')
+       !clossing && $modal.classList.add('open')
     },
     close() {
+        clossing = true;
         $modal.classList.remove('open');
         $modal.classList.add('hide')
         setTimeout(() => {
-Smodal.classList.remove('hide')
+$modal.classList.remove('hide')
+clossing = false;
         }, ANIMATION_SPEED)
     },
     destroy() {}
