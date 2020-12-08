@@ -1,3 +1,8 @@
+
+//title:string
+//closable:boolean
+//content: string
+//width: string ('400')
 const modal = $.modal({
     title: 'Nadiia Modal',
     closable: true,
