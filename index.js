@@ -1,4 +1,14 @@
-
+const fruits = [
+    {
+        id: 1, title: 'Stolen', price: 20, img:'https://e1.edimdoma.ru/data/recipes/0014/1902/141902-ed4_wide.jpg?1603287386'
+    },
+    {
+        id: 2, title: 'Kekse', price: 30, img:'https://e1.edimdoma.ru/data/recipes/0014/1902/141902-ed4_wide.jpg?1603287386'
+    },
+    {
+        id: 3, title: 'Kuchen', price: 40, img:'https://e1.edimdoma.ru/data/recipes/0014/1902/141902-ed4_wide.jpg?1603287386'
+    }
+]
 //title:string
 //closable:boolean
 //content: string
