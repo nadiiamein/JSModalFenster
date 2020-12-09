@@ -9,6 +9,16 @@ const modal = $.modal({
     content:
     `<h4>Modal is working</h4>
     <h4>Lorem4  </h4>`,
-    width: '400px'
+    width: '400px',
+    footerButtons: [
+        {text: 'Ok', type: 'primary', handler() {
+            console.log('Primary btn clicked');
+            modal.close()
+        }},
+        {text: 'Cancel', type: 'danger', handler() {
+            console.log('Danger btn clicked');
+            modal.close()
+        }}
+    ]
 });
 
