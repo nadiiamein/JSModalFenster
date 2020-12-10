@@ -1,4 +1,4 @@
-const fruits = [
+let fruits = [
     {
         id: 1, title: 'Stolen', price: 20, img:'https://e1.edimdoma.ru/data/recipes/0014/1902/141902-ed4_wide.jpg?1603287386'
     },
@@ -17,7 +17,7 @@ const toHTML = fruit => `
             <div class="card-body">
               <h5 class="card-title">${fruit.title}</h5>
               <a href="#" class="btn btn-primary" data-btn="price" data-id="${fruit.id}">Mehr Erfahren</a>
-              <a href="#" class="btn btn-danger">Löschen</a>
+              <a href="#" class="btn btn-danger" data-btn="remove" data-id="${fruit.id}">Löschen</a>
 
             </div>
           </div>
@@ -45,27 +45,45 @@ const priceModal = $.modal({
         }},
            ]
 });
-const priceModal = $.modal({
+// const confirmModal = $.modal({
 
-    title: 'Priece für position',
-    closable: true,
-    width: '400px',
-    footerButtons: [
-        {text: 'Schliessen', type: 'primary', handler() {
-            priceModal.close()
-        }},
-           ]
-});
+//     title: 'Sind Sie siecher?',
+//     closable: true,
+//     width: '400px',
+//     footerButtons: [
+//         {text: 'Zuruck', type: 'secondary', handler() {
+//             confirmModal.close()
+//         }},
+//         {text: 'Loschen', type: 'danger', handler() {
+//             confirmModal.close()
+//         }},
+//            ]
+// });
 
 document.addEventListener('click', event => {
     event.preventDefault()
     const btnType = event.target.dataset.btn;
     const id = +event.target.dataset.id;
+    const fruit = fruits.find(f => f.id === id);
+
     if (btnType === 'price') {
-        const fruit = fruits.find(f => f.id === id);
         priceModal.SetContent(`<p> Preice fur ${fruit.title}: <strong> ${fruit.price}euro</strong></p>`);
 
       priceModal.open();
 
+    } else if (btnType === 'remove') {
+        $.confirm({
+            title: 'Sind Sie siecher?',
+            content: `<p>Sie loschen position: <strong>${fruit.title}</strong></p>`
+        }).then(() => {
+            fruits = fruits.filter(f => f.id !== id)
+            render()
+        })
+        .catch(() =>{
+console.log('Cancel')
+        })
+        // confirmModal.SetContent(`<p>Sie loschen position: <strong>${fruit.title}</strong></p>`)
+        // confirmModal.open()
     }
+    
 })
